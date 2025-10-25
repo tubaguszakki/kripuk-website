@@ -269,7 +269,8 @@ const KripukWebsite = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const DetailModal = ({ item, onClose }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const DetailModal = ({ item, onClose }: { item: any; onClose: () => void }) => {
     if (!item) return null;
 
     return (

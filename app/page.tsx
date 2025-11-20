@@ -80,270 +80,314 @@ const KripukWebsite = () => {
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null)
 
   const featuredArticles = [
-    {
-      id: 1,
-      title: "Keripik Balado Padang: Warisan Rasa Pedas Minangkabau",
-      image: "/images/kripik/singkong_balado.jpg",
-      excerpt: "Menyelami proses pembuatan keripik balado yang telah diwariskan turun-temurun",
-      region: "Sumatera Barat",
-    },
-    {
-      id: 2,
-      title: "Kerupuk Mlarat: Filosofi Kesederhanaan dari Jawa Timur",
-      image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=800&q=80",
-      excerpt: "Camilan sederhana dengan makna mendalam dalam budaya Jawa",
-      region: "Jawa Timur",
-    },
-    {
-      id: 3,
-      title: "Keripik Tempe: Inovasi Protein Nabati Tradisional",
-      image: "/images/kripik/tempe_banyumas.jpg",
-      excerpt: "Bagaimana tempe bertransformasi menjadi camilan renyah favorit",
-      region: "Jawa Tengah",
-    },
+  {
+    id: 1,
+    targetId: 1, // Keripik Singkong Balado
+    title: "Keripik Balado Padang: Warisan Rasa Pedas Minangkabau",
+    image: "/images/kripik/singkong_balado.jpg",
+    excerpt: "Menyelami proses pembuatan keripik balado yang telah diwariskan turun-temurun",
+    region: "Sumatera Barat",
+  },
+  {
+    id: 2,
+    targetId: 13, // Kerupuk Mlarat
+    title: "Kerupuk Mlarat: Filosofi Kesederhanaan dari Jawa Timur",
+    image: "/images/krupuk/mlarat.jpg",
+    excerpt: "Camilan sederhana dengan makna mendalam dalam budaya Jawa",
+    region: "Jawa Timur",
+  },
+  {
+    id: 3,
+    targetId: 3, // Keripik Tempe Banyumas
+    title: "Keripik Tempe: Inovasi Protein Nabati Tradisional",
+    image: "/images/kripik/tempe_banyumas.jpg",
+    excerpt: "Bagaimana tempe bertransformasi menjadi camilan renyah favorit",
+    region: "Jawa Tengah",
+  },
   ]
+
 
   const keripikData = [
-    {
-      id: 1,
-      name: "Keripik Singkong Balado",
-      region: "Sumatera Barat",
-      image: "/images/kripik/singkong_balado.jpg",
-      description:
-        "Karupuak Sanjai atau keripik balado adalah kuliner khas dari Bukittinggi yang berasal dari kawasan Jl Sanjai, Desa Manggis. Keripik singkong dengan bumbu balado khas Minang yang pedas dan manis sekaligus.",
-      ingredients: ["Singkong pilihan", "Cabai merah keriting", "Bawang merah", "Gula merah", "Garam"],
-      technique:
-        "Singkong diiris tipis, direndam air kapur sirih, dijemur, digoreng kering, lalu dilumuri bumbu balado",
-    },
-    {
-      id: 2,
-      name: "Keripik Pisang Lampung",
-      region: "Lampung",
-      image: "/images/kripik/pisang_lampung.jpeg",
-      description:
-        "Keripik pisang Lampung terkenal dengan tekstur sangat renyah. Tersedia dalam berbagai varian rasa modern seperti cokelat, keju, susu, stroberi, melon, balado, dan kopi.",
-      ingredients: ["Pisang kepok", "Minyak kelapa", "Gula pasir", "Air kapur sirih"],
-      technique: "Pisang diiris tipis, direndam larutan gula dan kapur sirih, dipanggang atau digoreng hingga renyah",
-    },
-    {
-      id: 3,
-      name: "Keripik Tempe Banyumas",
-      region: "Jawa Tengah",
-      image: "/images/kripik/tempe_banyumas.jpg",
-      description:
-        "Keripik tempe khas Banyumas dibuat dari tempe yang diiris sangat tipis, dibalut tepung bumbu, dan digoreng kering. Kaya protein nabati.",
-      ingredients: ["Tempe segar", "Tepung beras", "Bawang putih", "Ketumbar"],
-      technique: "Tempe diiris setipis mungkin, dilumuri tepung berbumbu, digoreng hingga kering dan renyah",
-    },
-    {
-      id: 4,
-      name: "Keripik Paru Salatiga",
-      region: "Jawa Tengah",
-      image: "/images/kripik/paru_salatiga.jpeg",
-      description:
-        "Keripik paru khas Salatiga terbuat dari paru sapi pilihan. Sudah tersohor sebagai oleh-oleh wajib dari Salatiga.",
-      ingredients: ["Paru sapi segar", "Lengkuas", "Serai", "Daun salam", "Bawang putih"],
-      technique: "Paru direbus dengan rempah hingga empuk, diiris tipis, dibumbui, lalu digoreng hingga garing",
-    },
-    {
-      id: 5,
-      name: "Keripik Buah Malang",
-      region: "Jawa Timur",
-      image: "/images/kripik/buah_malang.jpeg",
-      description:
-        "Malang terkenal dengan keripik buahnya. Hadir dalam berbagai varian: apel, nangka, salak, nanas, mangga, semangka, rambutan.",
-      ingredients: ["Buah segar pilihan", "Tepung pelapis", "Gula pasir"],
-      technique: "Buah diiris tipis, dilumuri tepung khusus, digoreng dengan suhu terkontrol",
-    },
-    {
-      id: 6,
-      name: "Keripik Talas Bogor",
-      region: "Jawa Barat",
-      image: "/images/kripik/talas_bogor.jpg",
-      description:
-        "Bogor penghasil keripik talas berkualitas. Tekstur lebih tebal dengan rasa gurih. Tersedia varian cokelat, keju, balado.",
-      ingredients: ["Talas Bogor", "Air kapur sirih", "Garam laut", "Bumbu pilihan"],
-      technique: "Talas diiris tipis, direndam air kapur, dijemur, digoreng hingga renyah",
-    },
-    {
-      id: 7,
-      name: "Keripik Belut Godean",
-      region: "DI Yogyakarta",
-      image: "/images/kripik/belut_godean.jpeg",
-      description:
-        "Keripik belut dari Godean, Sleman mudah ditemui di Sentra Kuliner Pasar Godean. Cocok sebagai cemilan atau lauk.",
-      ingredients: ["Belut sawah", "Tepung bumbu", "Bawang putih", "Kunyit"],
-      technique: "Belut dibersihkan, direbus, dipotong, dilumuri tepung, digoreng hingga renyah",
-    },
-    {
-      id: 8,
-      name: "Keripik Oncom Bandung",
-      region: "Jawa Barat",
-      image: "/images/kripik/oncom_bandung.jpeg",
-      description:
-        "Oncom populer di Bandung diolah menjadi keripik gurih. Sering dibawa sebagai oleh-oleh khas Bandung.",
-      ingredients: ["Oncom merah", "Tepung beras", "Bawang putih", "Garam"],
-      technique: "Oncom diiris tipis, dilumuri tepung berbumbu, digoreng hingga kering",
-    },
-    {
-      id: 9,
-      name: "Keripik Jengkol Medan",
-      region: "Sumatera Utara",
-      image: "/images/kripik/jengkol_medan.jpeg",
-      description: "Keripik jengkol khas Medan dengan aroma kuat dan bumbu rempah kaya. Cocok sebagai teman nasi.",
-      ingredients: ["Jengkol segar", "Air kapur sirih", "Bawang merah", "Cabai"],
-      technique: "Jengkol direndam semalaman, diiris tipis, dibumbui, digoreng hingga renyah",
-    },
-    {
-      id: 10,
-      name: "Keripik Ares Lombok",
-      region: "Nusa Tenggara Barat",
-      image: "/images/kripik/ares_lombok.jpeg",
-      description:
-        "Keripik ares khas Lombok terbuat dari batang pisang. Camilan unik yang menunjukkan kreativitas kuliner lokal.",
-      ingredients: ["Batang pisang muda", "Tepung bumbu", "Kunyit", "Garam"],
-      technique: "Ares diiris tipis, dijemur setengah kering, dilumuri bumbu, digoreng hingga renyah",
-    },
-    {
-      id: 11,
-      name: "Keripik Nangka",
-      region: "Jawa Tengah",
-      image: "/images/kripik/nangka.jpg",
-      description: "Keripik nangka muda dengan tekstur unik. Mengandung vitamin C tinggi yang baik untuk imunitas.",
-      ingredients: ["Nangka muda", "Tepung bumbu", "Kunyit", "Lengkuas"],
-      technique: "Nangka diiris tipis, direndam air kapur, dilumuri bumbu, digoreng hingga keemasan",
-    },
-    {
-      id: 12,
-      name: "Keripik Sukun",
-      region: "Maluku",
-      image: "/images/kripik/sukun.jpg",
-      description: "Keripik sukun populer di Maluku dengan aroma seperti roti panggang. Kaya serat pangan.",
-      ingredients: ["Sukun muda", "Air garam", "Bumbu pilihan"],
-      technique: "Sukun diiris tipis, direndam air garam, dijemur, digoreng hingga renyah",
-    },
-  ]
+  {
+    id: 1,
+    name: "Keripik Singkong Balado",
+    region: "Sumatera Barat",
+    image: "/images/kripik/singkong_balado.jpg",
+    description:
+      "Keripik Singkong Balado atau Karupuak Sanjai berasal dari Bukittinggi, Sumatera Barat, dan sudah dikenal sejak awal abad ke-20 sebagai camilan khas Minangkabau. Sentra produksinya berada di kawasan Sanjai, tempat para perajin rumahan pertama kali memperkenalkannya. Balado—bumbu merah pedas-manis khas Minang—diciptakan oleh para ibu rumah tangga sebagai cara mengawetkan bahan makanan. Keripik gurih yang dilumuri bumbu balado ini kini menjadi ikon oleh-oleh Bukittinggi dan simbol kreativitas kuliner Minang.",
+    ingredients: ["Singkong pilihan", "Cabai merah keriting", "Bawang merah", "Gula merah", "Garam"],
+    technique:
+      "Singkong diiris tipis, direndam air kapur sirih, dijemur, digoreng kering, lalu dilumuri bumbu balado",
+  },
+  {
+    id: 2,
+    name: "Keripik Pisang Lampung",
+    region: "Lampung",
+    image: "/images/kripik/pisang_lampung.jpeg",
+    description:
+      "Keripik Pisang Lampung mulai populer sejak tahun 1970-an ketika provinsi ini dikenal sebagai penghasil pisang kepok terbesar di Indonesia. Para petani lokal mengolah pisang berlebih menjadi keripik agar tidak cepat rusak. Seiring berkembangnya UMKM pada tahun 1990-an, berbagai varian rasa modern seperti cokelat, susu, stroberi, dan keju mulai diperkenalkan. Keripik ini kini menjadi salah satu identitas kuliner Lampung dan oleh-oleh favorit wisatawan.",
+    ingredients: ["Pisang kepok", "Minyak kelapa", "Gula pasir", "Air kapur sirih"],
+    technique:
+      "Pisang diiris tipis, direndam larutan gula dan kapur sirih, dipanggang atau digoreng hingga renyah",
+  },
+  {
+    id: 3,
+    name: "Keripik Tempe Banyumas",
+    region: "Jawa Tengah",
+    image: "/images/kripik/tempe_banyumas.jpg",
+    description:
+      "Keripik Tempe Banyumas berasal dari Kabupaten Banyumas, Jawa Tengah, dan telah dibuat sejak era kolonial sebagai makanan rakyat kaya protein. Tempe Banyumas terkenal gurih karena proses fermentasinya yang kuat. Para perajin di Sokaraja diyakini sebagai pelopor keripik tempe super tipis berbalut tepung bumbu. Produk ini menjadi oleh-oleh khas Banyumas dan bentuk kreativitas kuliner masyarakat Jawa dalam mengolah kedelai.",
+    ingredients: ["Tempe segar", "Tepung beras", "Bawang putih", "Ketumbar"],
+    technique:
+      "Tempe diiris setipis mungkin, dilumuri tepung berbumbu, digoreng hingga kering dan renyah",
+  },
+  {
+    id: 4,
+    name: "Keripik Paru Salatiga",
+    region: "Jawa Tengah",
+    image: "/images/kripik/paru_salatiga.jpeg",
+    description:
+      "Keripik Paru Salatiga mulai dikenal pada tahun 1980-an ketika para pengolah daging lokal mencoba membuat paru sapi lebih tahan lama. Kota Salatiga yang berada di jalur dagang Semarang–Solo membuat camilan ini cepat populer. Paru sapi pilihan direbus dengan rempah Jawa seperti daun salam dan lengkuas sebelum diiris tipis dan digoreng hingga garing. Keripik ini kini menjadi oleh-oleh khas dari kota berhawa sejuk tersebut.",
+    ingredients: ["Paru sapi segar", "Lengkuas", "Serai", "Daun salam", "Bawang putih"],
+    technique:
+      "Paru direbus dengan rempah hingga empuk, diiris tipis, dibumbui, lalu digoreng hingga garing",
+  },
+  {
+    id: 5,
+    name: "Keripik Buah Malang",
+    region: "Jawa Timur",
+    image: "/images/kripik/buah_malang.jpeg",
+    description:
+      "Keripik Buah Malang adalah inovasi modern dari Kota Batu dan Malang yang muncul pada awal tahun 2000-an. Daerah ini terkenal sebagai pusat hortikultura sehingga buah segar sering berlimpah. Untuk menjaga nilai jual buah saat panen raya, UMKM lokal menciptakan keripik buah dengan teknik vacuum frying agar warna dan rasa buah tetap terjaga. Varian terkenal meliputi apel, salak, nangka, serta nanas. Keripik ini kini menjadi oleh-oleh khas Malang.",
+    ingredients: ["Buah segar pilihan", "Tepung pelapis", "Gula pasir"],
+    technique:
+      "Buah diiris tipis, dilumuri tepung khusus, digoreng dengan suhu terkontrol",
+  },
+  {
+    id: 6,
+    name: "Keripik Talas Bogor",
+    region: "Jawa Barat",
+    image: "/images/kripik/talas_bogor.jpg",
+    description:
+      "Keripik Talas Bogor berasal dari tradisi masyarakat Bogor yang sudah lama mengonsumsi talas sejak masa kolonial. Talas yang mudah tumbuh di tanah Bogor membuatnya menjadi komoditas penting. Keripik talas mulai diproduksi luas pada tahun 1990-an seiring berkembangnya UMKM di Bogor. Camilan ini kini menjadi ikon kuliner kota hujan, hadir dalam berbagai varian rasa seperti balado, keju, dan cokelat.",
+    ingredients: ["Talas Bogor", "Air kapur sirih", "Garam laut", "Bumbu pilihan"],
+    technique: "Talas diiris tipis, direndam air kapur, dijemur, digoreng hingga renyah",
+  },
+  {
+    id: 7,
+    name: "Keripik Belut Godean",
+    region: "DI Yogyakarta",
+    image: "/images/kripik/belut_godean.jpeg",
+    description:
+      "Keripik Belut Godean berasal dari daerah Godean, Sleman, Yogyakarta, dan mulai populer pada tahun 1980-an. Awalnya dibuat oleh ibu-ibu pasar untuk memanfaatkan belut sawah yang melimpah sebagai lauk yang tahan lama. Belut dibumbui kunyit dan bawang putih sebelum digoreng garing. Kini Keripik Belut Godean menjadi kuliner khas Yogyakarta dan oleh-oleh yang selalu dicari wisatawan.",
+    ingredients: ["Belut sawah", "Tepung bumbu", "Bawang putih", "Kunyit"],
+    technique:
+      "Belut dibersihkan, direbus, dipotong, dilumuri tepung, digoreng hingga renyah",
+  },
+  {
+    id: 8,
+    name: "Keripik Oncom Bandung",
+    region: "Jawa Barat",
+    image: "/images/kripik/oncom_bandung.jpeg",
+    description:
+      "Keripik Oncom Bandung berasal dari budaya kuliner Sunda dalam mengolah oncom—produk fermentasi yang sudah ada sejak abad ke-19. Pada tahun 1990-an, UMKM Bandung mulai membuat oncom menjadi keripik dengan cara mengiris tipis, membalutnya dengan tepung berbumbu, lalu menggorengnya hingga renyah. Keripik ini menjadi oleh-oleh populer yang mencerminkan karakter kuliner kreatif masyarakat Sunda.",
+    ingredients: ["Oncom merah", "Tepung beras", "Bawang putih", "Garam"],
+    technique:
+      "Oncom diiris tipis, dilumuri tepung berbumbu, digoreng hingga kering",
+  },
+  {
+    id: 9,
+    name: "Keripik Jengkol Medan",
+    region: "Sumatera Utara",
+    image: "/images/kripik/jengkol_medan.jpeg",
+    description:
+      "Keripik Jengkol Medan berasal dari Sumatera Utara, daerah yang terkenal sebagai penghasil jengkol berkualitas tinggi. Camilan ini mulai populer pada tahun 1980-an ketika pedagang lokal mencari cara mengolah jengkol agar bisa disimpan lebih lama. Irisan jengkol direndam semalaman, dibumbui rempah, lalu digoreng hingga renyah. Keripik ini memiliki aroma kuat dan menjadi camilan khas yang banyak diburu wisatawan saat berkunjung ke Medan.",
+    ingredients: ["Jengkol segar", "Air kapur sirih", "Bawang merah", "Cabai"],
+    technique:
+      "Jengkol direndam semalaman, diiris tipis, dibumbui, digoreng hingga renyah",
+  },
+  {
+    id: 10,
+    name: "Keripik Ares Lombok",
+    region: "Nusa Tenggara Barat",
+    image: "/images/kripik/ares_lombok.jpeg",
+    description:
+      "Keripik Ares Lombok berasal dari tradisi kuliner suku Sasak yang biasa mengolah batang pisang muda (ares) sebagai bahan masakan. Inovasi menjadikannya keripik dimulai pada tahun 1990-an oleh UMKM Lombok yang ingin memanfaatkan limbah batang pisang. Ares diiris tipis, dijemur setengah kering, dibumbui kunyit dan rempah, lalu digoreng renyah. Camilan unik ini menjadi bukti kreativitas masyarakat Lombok dalam mengolah bahan lokal.",
+    ingredients: ["Batang pisang muda", "Tepung bumbu", "Kunyit", "Garam"],
+    technique:
+      "Ares diiris tipis, dijemur setengah kering, dilumuri bumbu, digoreng hingga renyah",
+  },
+  {
+    id: 11,
+    name: "Keripik Nangka",
+    region: "Jawa Tengah",
+    image: "/images/kripik/nangka.jpg",
+    description:
+      "Keripik Nangka berasal dari masyarakat pedesaan di Jawa yang sudah mengolah nangka muda sejak awal abad ke-20. Nangka yang melimpah saat musim panen membuat warga mencari cara agar buah tersebut bisa bertahan lama. Teknik pengirisan tipis dan perendaman air kapur sirih digunakan untuk menjaga tekstur sebelum digoreng hingga keemasan. Keripik nangka kaya rasa manis alami dan menjadi camilan tradisional yang digemari hingga kini.",
+    ingredients: ["Nangka muda", "Tepung bumbu", "Kunyit", "Lengkuas"],
+    technique:
+      "Nangka diiris tipis, direndam air kapur, dilumuri bumbu, digoreng hingga keemasan",
+  },
+  {
+    id: 12,
+    name: "Keripik Sukun",
+    region: "Maluku",
+    image: "/images/kripik/sukun.jpg",
+    description:
+      "Keripik Sukun berasal dari Maluku, daerah yang sejak abad ke-19 dikenal sebagai salah satu pusat penghasil sukun terbaik di Nusantara. Masyarakat Maluku mengolah sukun sebagai sumber karbohidrat utama dan mulai membuatnya menjadi keripik pada tahun 1970-an sebagai alternatif makanan simpan. Keripik sukun memiliki aroma seperti roti panggang dan tekstur renyah yang membuatnya menjadi oleh-oleh khas dari wilayah timur Indonesia.",
+    ingredients: ["Sukun muda", "Air garam", "Bumbu pilihan"],
+    technique:
+      "Sukun diiris tipis, direndam air garam, dijemur, digoreng hingga renyah",
+  },
+];
+
 
   const kerupukData = [
-    {
-      id: 1,
-      name: "Kerupuk Udang Sidoarjo",
-      region: "Jawa Timur",
-      image: "/images/krupuk/udang.jpg",
-      description:
-        "Kerupuk udang Sidoarjo paling terkenal di Indonesia dan sudah diekspor ke berbagai negara. Terbuat dari udang segar.",
-      ingredients: ["Udang segar", "Tepung tapioka", "Bawang putih", "Garam"],
-      technique: "Udang ditumbuk halus, dicampur tepung, dikukus, diiris tipis, dijemur 2-3 hari",
-    },
-    {
-      id: 2,
-      name: "Kerupuk Ikan Palembang",
-      region: "Sumatera Selatan",
-      image: "/images/krupuk/ikan_palembang.jpg",
-      description:
-        "Kerupuk ikan atau kemplang adalah teman sempurna pempek. Dibuat dari ikan tenggiri dengan tepung sagu.",
-      ingredients: ["Ikan tenggiri", "Tepung sagu", "Telur", "Merica"],
-      technique: "Ikan digiling halus, dicampur tepung, dibentuk, dikukus, diiris, dijemur 2-4 hari",
-    },
-    {
-      id: 3,
-      name: "Kerupuk Mlarat",
-      region: "Jawa Timur",
-      image: "/images/krupuk/mlarat.jpg",
-      description: "Kerupuk mlarat disangrai dengan pasir panas, bukan minyak. Lebih sehat karena tanpa minyak.",
-      ingredients: ["Tepung tapioka", "Air", "Garam", "Pewarna alami"],
-      technique: "Adonan dibuat tipis, dijemur, disangrai di atas pasir panas hingga mengembang",
-    },
-    {
-      id: 4,
-      name: "Kerupuk Kulit (Rambak)",
-      region: "Jawa Tengah",
-      image: "/images/krupuk/kulit.jpg",
-      description: "Kerupuk kulit atau rambak dibuat dari kulit sapi. Teksturnya tebal seperti bantal saat digoreng.",
-      ingredients: ["Kulit sapi", "Air kapur sirih", "Garam", "Bumbu rempah"],
-      technique: "Kulit dibersihkan, direbus berkali-kali, dijemur berhari-hari, digoreng hingga mengembang",
-    },
-    {
-      id: 5,
-      name: "Kerupuk Gendar",
-      region: "Jawa Tengah",
-      image: "/images/krupuk/gendar.jpeg",
-      description:
-        "Kerupuk gendar atau kerupuk nasi dibuat dari nasi dicampur bumbu rempah. Teksturnya padat tapi renyah.",
-      ingredients: ["Nasi putih", "Tepung beras", "Bawang putih", "Garam"],
-      technique: "Nasi dicampur tepung, dibentuk, dikukus, diiris tipis, dijemur, digoreng",
-    },
-    {
-      id: 6,
-      name: "Kerupuk Blek (Putih)",
-      region: "Jawa",
-      image: "/images/krupuk/putih.jpg",
-      description:
-        "Kerupuk blek paling populer di Indonesia. Nama blek dari wadah kaleng seng legendaris. Sering jadi kerupuk lomba 17 Agustus.",
-      ingredients: ["Tepung tapioka", "Daun kucai", "Bawang putih", "Garam"],
-      technique: "Adonan tepung dicampur kucai, dicetak, dikukus, diiris, dijemur, digoreng",
-    },
-    {
-      id: 7,
-      name: "Amplang Kalimantan",
-      region: "Kalimantan Timur",
-      image: "/images/krupuk/amplang_kalimantan.jpeg",
-      description:
-        "Amplang khas Samarinda berbentuk bulat lonjong kecil. Terbuat dari ikan tenggiri dengan tepung kanji.",
-      ingredients: ["Ikan tenggiri", "Tepung kanji", "Telur", "Bawang putih"],
-      technique: "Ikan digiling, dicampur tepung, dibentuk bulat lonjong, digoreng hingga kecoklatan",
-    },
-    {
-      id: 8,
-      name: "Emping Melinjo",
-      region: "Jawa Barat",
-      image: "/images/krupuk/emping.jpg",
-      description:
-        "Emping adalah kerupuk tradisional dari biji melinjo. Rasa khasnya agak pahit. Sudah ada sejak abad ke-16.",
-      ingredients: ["Biji melinjo", "Minyak goreng", "Garam"],
-      technique: "Biji melinjo direbus, dikupas, dipipihkan, dijemur, digoreng sebentar",
-    },
-    {
-      id: 9,
-      name: "Rempeyek",
-      region: "Jawa Tengah",
-      image: "/images/krupuk/rempeyek.jpg",
-      description:
-        "Rempeyek sudah ada sejak abad ke-16 di Yogyakarta. Dibuat dari tepung, santan, dengan topping kacang atau rebon.",
-      ingredients: ["Tepung beras", "Santan", "Kacang tanah", "Bawang putih"],
-      technique: "Tepung dicampur santan, diambil sesendok dengan topping, dituang ke minyak, digoreng",
-    },
-    {
-      id: 10,
-      name: "Opak Sunda",
-      region: "Jawa Barat",
-      image: "/images/krupuk/opak_sunda.jpg",
-      description:
-        "Opak Sunda dipanggang di atas bara api. Dibuat dari tepung beras. Tekstur sangat renyah dengan rasa gurih.",
-      ingredients: ["Tepung beras", "Kelapa parut", "Bawang putih", "Garam"],
-      technique: "Adonan dibentuk tipis, dijemur, dipanggang di atas bara api hingga renyah",
-    },
-    {
-      id: 11,
-      name: "Kerupuk Mie",
-      region: "DKI Jakarta",
-      image: "/images/krupuk/mie.jpg",
-      description:
-        "Kerupuk mie dinamakan karena bentuknya keriting menyerupai mie. Biasa menjadi pelengkap asinan Bogor dan Betawi.",
-      ingredients: ["Tepung terigu", "Telur", "Pewarna kuning", "Garam"],
-      technique: "Adonan dibuat menyerupai mie, dicetak, dikukus, dipotong, dijemur, digoreng",
-    },
-    {
-      id: 12,
-      name: "Kerupuk Bawang",
-      region: "Jawa",
-      image: "/images/krupuk/bawang.jpeg",
-      description:
-        "Kerupuk bawang terbuat dari tepung tapioka dan parutan bawang putih. Bentuknya kecil tipis berwarna-warni.",
-      ingredients: ["Tepung tapioka", "Bawang putih", "Garam", "Kaldu"],
-      technique: "Tepung dicampur bawang, dicetak, dikukus, diiris, dijemur, digoreng",
-    },
-  ]
+  {
+    id: 1,
+    name: "Kerupuk Udang Sidoarjo",
+    region: "Jawa Timur",
+    image: "/images/krupuk/udang.jpg",
+    description:
+      "Kerupuk Udang Sidoarjo telah menjadi ikon kuliner Jawa Timur sejak pertengahan abad ke-20. Sidoarjo, yang dikenal sebagai penghasil udang melimpah, membuat masyarakat setempat mengolah hasil laut menjadi produk awet berupa kerupuk. Industri kerupuk udang rumahan mulai berkembang pada tahun 1960–1970, kemudian naik kelas menjadi industri besar yang bahkan menembus pasar ekspor. Camilan ini mewakili kekayaan pesisir Laut Utara Jawa dan kearifan lokal pengolahan hasil laut.",
+    ingredients: ["Udang segar", "Tepung tapioka", "Bawang putih", "Garam"],
+    technique:
+      "Udang ditumbuk halus, dicampur tepung, dikukus, diiris tipis, dijemur 2–3 hari",
+  },
+  {
+    id: 2,
+    name: "Kerupuk Ikan Palembang (Kemplang)",
+    region: "Sumatera Selatan",
+    image: "/images/krupuk/ikan_palembang.jpg",
+    description:
+      "Kerupuk ikan Palembang atau kemplang adalah pendamping khas pempek yang sudah ada sejak zaman Kesultanan Palembang pada abad ke-18. Awalnya dibuat untuk mengawetkan ikan tenggiri yang melimpah di Sungai Musi. Kerupuk ini dipanggang atau digoreng, menghasilkan aroma khas dan tekstur renyah. Hingga kini, kemplang menjadi simbol kuliner Palembang dan salah satu oleh-oleh paling dicari wisatawan.",
+    ingredients: ["Ikan tenggiri", "Tepung sagu", "Telur", "Merica"],
+    technique:
+      "Ikan digiling halus, dicampur tepung, dibentuk, dikukus, diiris, dijemur 2–4 hari",
+  },
+  {
+    id: 13,
+    name: "Kerupuk Mlarat",
+    region: "Jawa Timur",
+    image: "/images/krupuk/mlarat.jpg",
+    description:
+      "Kerupuk Mlarat berasal dari Cirebon dan sudah ada sejak awal 1900-an. Nama 'mlarat' berarti 'miskin' dalam bahasa Jawa, karena kerupuk ini dibuat tanpa minyak—digoreng menggunakan pasir panas oleh masyarakat sederhana pada masa itu. Teknik ini terbukti lebih sehat dan hemat biaya, sehingga kerupuk mlarat menjadi warisan kuliner unik yang masih dibuat dengan cara tradisional hingga sekarang.",
+    ingredients: ["Tepung tapioka", "Air", "Garam", "Pewarna alami"],
+    technique:
+      "Adonan dibuat tipis, dijemur, disangrai di atas pasir panas hingga mengembang",
+  },
+  {
+    id: 4,
+    name: "Kerupuk Kulit (Rambak)",
+    region: "Jawa Tengah",
+    image: "/images/krupuk/kulit.jpg",
+    description:
+      "Kerupuk kulit atau rambak sudah dikenal sejak abad ke-19 di daerah pesisir dan pedesaan Jawa sebagai cara memaksimalkan penggunaan seluruh bagian sapi. Rambak menjadi terkenal di wilayah Solo, Boyolali, dan Banyumas. Proses pengolahan kulit yang panjang membuat rambak memiliki tekstur tebal, renyah, dan gurih. Hingga kini kerupuk kulit menjadi lauk favorit dalam hidangan Jawa tradisional seperti soto dan pecel.",
+    ingredients: ["Kulit sapi", "Air kapur sirih", "Garam", "Bumbu rempah"],
+    technique:
+      "Kulit dibersihkan, direbus berkali-kali, dijemur berhari-hari, digoreng hingga mengembang",
+  },
+  {
+    id: 5,
+    name: "Kerupuk Gendar",
+    region: "Jawa Tengah",
+    image: "/images/krupuk/gendar.jpeg",
+    description:
+      "Kerupuk Gendar atau kerupuk nasi berasal dari daerah Jawa sejak masa kolonial ketika masyarakat mencari cara untuk memanfaatkan nasi sisa agar tidak terbuang. Dengan mencampur nasi dan tepung lalu menjemurnya menjadi kerupuk, masyarakat menciptakan camilan renyah yang hemat dan lezat. Gendar menjadi populer di daerah Magelang, Solo, dan Yogyakarta sebagai pelengkap sayur tradisional.",
+    ingredients: ["Nasi putih", "Tepung beras", "Bawang putih", "Garam"],
+    technique:
+      "Nasi dicampur tepung, dibentuk, dikukus, diiris tipis, dijemur, digoreng",
+  },
+  {
+    id: 6,
+    name: "Kerupuk Blek (Putih)",
+    region: "Jawa",
+    image: "/images/krupuk/putih.jpg",
+    description:
+      "Kerupuk blek sudah ada sejak awal abad ke-20 dan disebut 'blek' karena dulu disimpan dalam kaleng seng (blek). Kerupuk ini sangat populer di seluruh Jawa dan menjadi simbol kerupuk sederhana khas warung makan. Kerupuk putih ini identik dengan lomba makan kerupuk pada perayaan 17 Agustus, menjadikannya bagian dari budaya nasional Indonesia.",
+    ingredients: ["Tepung tapioka", "Daun kucai", "Bawang putih", "Garam"],
+    technique:
+      "Adonan tepung dicampur kucai, dicetak, dikukus, diiris, dijemur, digoreng",
+  },
+  {
+    id: 7,
+    name: "Amplang Kalimantan",
+    region: "Kalimantan Timur",
+    image: "/images/krupuk/amplang_kalimantan.jpeg",
+    description:
+      "Amplang adalah kerupuk khas Kalimantan Timur yang sudah terkenal sejak tahun 1970-an, terutama dari kota Samarinda dan Balikpapan. Berbentuk bulat lonjong kecil, amplang dibuat dari ikan tenggiri atau pipih yang menjadi hasil laut utama di daerah tersebut. Amplang adalah kebanggaan kuliner masyarakat pesisir Kalimantan dan sering dijadikan oleh-oleh khas.",
+    ingredients: ["Ikan tenggiri", "Tepung kanji", "Telur", "Bawang putih"],
+    technique:
+      "Ikan digiling, dicampur tepung, dibentuk bulat lonjong, digoreng hingga kecoklatan",
+  },
+  {
+    id: 8,
+    name: "Emping Melinjo",
+    region: "Jawa Barat",
+    image: "/images/krupuk/emping.jpg",
+    description:
+      "Emping melinjo adalah salah satu kerupuk tertua di Indonesia, telah dikonsumsi sejak abad ke-16 pada masa kerajaan Sunda dan Mataram. Dibuat dari biji melinjo yang dipipihkan lalu dijemur, emping memiliki rasa gurih sedikit pahit yang khas. Pada masa lalu emping sering disajikan sebagai makanan bangsawan dan kini menjadi pelengkap favorit untuk soto, rawon, dan nasi uduk.",
+    ingredients: ["Biji melinjo", "Minyak goreng", "Garam"],
+    technique:
+      "Biji melinjo direbus, dikupas, dipipihkan, dijemur, digoreng sebentar",
+  },
+  {
+    id: 9,
+    name: "Rempeyek",
+    region: "Jawa Tengah",
+    image: "/images/krupuk/rempeyek.jpg",
+    description:
+      "Rempeyek atau peyek sudah ada sejak abad ke-16 di Yogyakarta dan berkembang pesat pada era Kasultanan Mataram. Terbuat dari adonan tepung dengan topping kacang atau rebon, rempeyek menjadi pelengkap wajib dalam hidangan Jawa seperti pecel, gudeg, atau nasi liwet. Camilan ini mencerminkan kreativitas masyarakat Jawa dalam memadukan rempah dan teknik goreng tipis.",
+    ingredients: ["Tepung beras", "Santan", "Kacang tanah", "Bawang putih"],
+    technique:
+      "Tepung dicampur santan, diambil sesendok dengan topping, dituang ke minyak, digoreng",
+  },
+  {
+    id: 10,
+    name: "Opak Sunda",
+    region: "Jawa Barat",
+    image: "/images/krupuk/opak_sunda.jpg",
+    description:
+      "Opak Sunda merupakan kerupuk tradisional masyarakat Sunda yang sudah dikenal sejak abad ke-19. Dibuat dari tepung beras dan kelapa parut, opak dipanggang di atas bara api sehingga menghasilkan aroma smokey yang khas. Biasanya disajikan saat acara keluarga, syukuran, dan hari raya. Opak adalah simbol sederhana namun kuat dari budaya pangan Sunda.",
+    ingredients: ["Tepung beras", "Kelapa parut", "Bawang putih", "Garam"],
+    technique:
+      "Adonan dibentuk tipis, dijemur, dipanggang di atas bara api hingga renyah",
+  },
+  {
+    id: 11,
+    name: "Kerupuk Mie",
+    region: "DKI Jakarta",
+    image: "/images/krupuk/mie.jpg",
+    description:
+      "Kerupuk mie berasal dari Betawi dan mulai populer pada tahun 1970-an. Dinamakan kerupuk mie karena bentuknya keriting seperti mie kering. Kerupuk ini sering digunakan sebagai pelengkap asinan Betawi dan asinan Bogor. Teksturnya ringan dan renyah menjadikannya camilan favorit generasi muda sejak dulu hingga sekarang.",
+    ingredients: ["Tepung terigu", "Telur", "Pewarna kuning", "Garam"],
+    technique:
+      "Adonan dibuat menyerupai mie, dicetak, dikukus, dipotong, dijemur, digoreng",
+  },
+  {
+    id: 12,
+    name: "Kerupuk Bawang",
+    region: "Jawa",
+    image: "/images/krupuk/bawang.jpeg",
+    description:
+      "Kerupuk bawang adalah jenis kerupuk rumahan yang sangat populer di Pulau Jawa sejak awal abad ke-20. Dibuat dari tepung tapioka dan bawang putih parut, kerupuk ini dikenal karena aromanya yang harum dan bentuknya yang tipis berwarna-warni. Kerupuk bawang menjadi pelengkap masakan Nusantara mulai dari bakso, mie ayam, hingga nasi goreng.",
+    ingredients: ["Tepung tapioka", "Bawang putih", "Garam", "Kaldu"],
+    technique:
+      "Tepung dicampur bawang, dicetak, dikukus, diiris, dijemur, digoreng",
+  },
+];
+  const openArticle = (articleId: number) => {
+  const foundItem =
+    keripikData.find((item) => item.id === articleId) ||
+    kerupukData.find((item) => item.id === articleId)
+
+  if (foundItem) {
+    setSelectedItem(foundItem)
+    setActivePage("kripuk")
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+}
+
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % featuredArticles.length)
@@ -405,7 +449,7 @@ const KripukWebsite = () => {
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-30"
                 style={{
-                  backgroundImage: "url('https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=1600&q=80')",
+                  backgroundImage: "url(/images/home.png)",
                 }}
               ></div>
 
@@ -435,22 +479,32 @@ const KripukWebsite = () => {
                       {featuredArticles.map((article, index) => (
                         <div
                           key={article.id}
-                          className={`absolute inset-0 transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
+                          className={`absolute inset-0 transition-opacity duration-700 ${
+                            index === currentSlide ? "opacity-100" : "opacity-0"
+                          }`}
                         >
                           <img
                             src={article.image || "/placeholder.svg"}
                             alt={article.title}
                             className="w-full h-full object-cover"
                           />
+
                           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+
                           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
                             <div className="flex items-center gap-2 mb-4">
                               <MapPin className="w-5 h-5 text-amber-400" />
                               <span className="text-amber-400 font-semibold">{article.region}</span>
                             </div>
+
                             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">{article.title}</h3>
+
                             <p className="text-gray-300 text-lg mb-6 max-w-2xl">{article.excerpt}</p>
-                            <button className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105">
+
+                            <button
+                              onClick={() => openArticle(featuredArticles[currentSlide].targetId)}
+                              className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
+                            >
                               Baca Selengkapnya
                             </button>
                           </div>
@@ -465,6 +519,7 @@ const KripukWebsite = () => {
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
+
                   <button
                     onClick={nextSlide}
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all"
@@ -477,7 +532,9 @@ const KripukWebsite = () => {
                       <button
                         key={index}
                         onClick={() => setCurrentSlide(index)}
-                        className={`h-2 rounded-full transition-all ${index === currentSlide ? "w-8 bg-amber-500" : "w-2 bg-gray-600"}`}
+                        className={`h-2 rounded-full transition-all ${
+                          index === currentSlide ? "w-8 bg-amber-500" : "w-2 bg-gray-600"
+                        }`}
                       />
                     ))}
                   </div>
@@ -485,7 +542,8 @@ const KripukWebsite = () => {
               </div>
             </section>
 
-            <section className="py-20 bg-zinc-950">
+
+            {/* <section className="py-20 bg-zinc-950">
               <div className="max-w-7xl mx-auto px-4">
                 <h2 className="text-4xl font-bold text-amber-100 mb-12 text-center">Telusuri Camilan Nusantara</h2>
 
@@ -509,7 +567,7 @@ const KripukWebsite = () => {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
 
             <section className="py-20 bg-gradient-to-b from-zinc-950 to-zinc-900">
               <div className="max-w-4xl mx-auto px-4 text-center">
